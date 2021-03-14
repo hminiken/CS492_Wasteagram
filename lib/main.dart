@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wasteagram/screens/entry_screen.dart';
+import 'package:wasteagram/screens/post_detail_screen.dart';
 import 'package:wasteagram/screens/home_screen.dart';
 import 'package:wasteagram/screens/new_post_screen.dart';
 
@@ -26,7 +26,7 @@ class MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Wasteagram',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
