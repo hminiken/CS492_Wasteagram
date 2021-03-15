@@ -38,6 +38,10 @@ dev_dependencies:
   firebase_core:
   intl: ^0.15.7
   location: 
+  test: 
+  permission_handler: 
+  sentry_flutter: ^4.0.6
+  firebase_analytics:
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

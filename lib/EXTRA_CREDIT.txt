@@ -1,0 +1,11 @@
+Extra Credit Implemented:
+
+1) That the total of all items appears in the app bar and is updated when a new post is created
+    - See file 'lib/widgets/home_screen_widgets.dart', Widget wasteagramAppBar for the implementaiton of the extra credit 
+
+3) Integrate the use of in-app analytics (Analytics) to monitor application usage
+    - See 'lib/app.dart' for implementation of in-app analytics
+
+4) Integrate the use of crash reporting (Sentry or Crashlytics) to record application crashes
+    - See file 'lib/main.dart' and 'lib/app.dart' for implementation of crash reporting. 
+    - See file 'lib/screens/home_screen.dart' for the forced thrown error when the floating action button is pressed. 

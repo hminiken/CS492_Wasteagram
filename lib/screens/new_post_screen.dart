@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:wasteagram/models/screen_argument_models.dart';
 import 'package:wasteagram/widgets/home_screen_widgets.dart';
@@ -25,11 +23,43 @@ class NewPostScreenState extends State<NewPostScreen> {
     // loadJournal();
   }
 
-  void retrieveLocation() async {
-    var locationService = Location();
-    locationData = await locationService.getLocation();
+  // void retrieveLocation() async {
+  //   var locationService = Location();
+  //   locationData = await locationService.getLocation();
+  //   setState(() {});
+  // }
+
+
+    void retrieveLocation() async {
+      var locationService = Location();
+    try {
+      var _serviceEnabled = await locationService.serviceEnabled();
+      if (!_serviceEnabled) {
+        _serviceEnabled = await locationService.requestService();
+        if (!_serviceEnabled) {
+          print('Failed to enable service. Returning.');
+           Navigator.of(context).pop();
+          return;
+        }
+      }
+
+      var _permissionGranted = await locationService.hasPermission();
+      if (_permissionGranted == PermissionStatus.denied) {
+        _permissionGranted = await locationService.requestPermission();
+        if (_permissionGranted != PermissionStatus.granted) {
+          print('Location service permission not granted. Returning.');
+           Navigator.of(context).pop();
+          return;
+        }
+      }
+      locationData = await locationService.getLocation(); 
+    } on PlatformException catch (e) {
+      print('Error: ${e.toString()}, code: ${e.code}');
+      locationData = null;
+    }
     setState(() {});
   }
+
 
 
 

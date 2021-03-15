@@ -8,7 +8,7 @@
             "name": "wasteagram",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "release"
+            "flutterMode": "debug"
         }
     ]
 }

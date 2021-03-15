@@ -1,37 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:wasteagram/screens/post_detail_screen.dart';
-import 'package:wasteagram/screens/home_screen.dart';
-import 'package:wasteagram/screens/new_post_screen.dart';
+import 'package:wasteagram/app.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/widgets.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
+import 'dart:async';
 
-void main() {
-  // WidgetsFlutterBinding.ensureInitialized();
+const DSN_URL =
+    'https://77e04102fb334448b756108c10374f4b@o551740.ingest.sentry.io/5675443';
 
-  runApp(MyApp());
-}
-
-class MyApp extends StatefulWidget {
-  // This widget is the root of your application.
-
-   static final routes = {
-    EntryScreen.routeName: (context) => EntryScreen(),
-    NewPostScreen.routeName: (context) => NewPostScreen(),
-    HomeScreen.routeName: (context) => HomeScreen()
-  };
-
-  @override
-  MyAppState createState() => MyAppState();
-}
-
-class MyAppState extends State<MyApp> {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Wasteagram',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      routes: MyApp.routes,
-      // home: HomeScreen(),
-    );
-  }
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  await SentryFlutter.init(
+    (options) => options.dsn = DSN_URL,
+    appRunner: () => runApp(MyApp()),
+  );
 }
